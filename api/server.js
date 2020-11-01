@@ -1,9 +1,11 @@
 const express = require('express');
 const cors = require('cors');
-const userRouter = require('./index');
+const ContactRouter = require('./contacts.routers');
 require('dotenv').config();
 
-module.exports = class UsersServer {
+const PORT = 3000;
+
+module.exports = class ContactServer {
     constructor() {
         this.server = null;
     }
@@ -25,12 +27,12 @@ module.exports = class UsersServer {
     }
 
     initRoutes() {
-this.server.use('/contacts', userRouter);
+this.server.use('/contacts', ContactRouter);
     }
 
     startListening() {
-        this.server.listen(process.env.PORT, () => {
-            console.log("SERVER STARTED LISTENING ON PORT", process.env.PORT);
+        this.server.listen(PORT, () => {
+            console.log("SERVER STARTED LISTENING ON PORT", PORT);
         });
     }
 }
